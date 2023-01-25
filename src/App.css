@@ -8,18 +8,24 @@
 }
 .App_info{
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  
+  
+  /* flex-direction: column; */
   /* justify-content: center;
   align-items: center; */
- 
-  
+}
+.App_data{
+  /* width: 50%; */
+  border-radius: 10px;
+  background-color: white;
+
 }
 .App_info_type{
   width: 100%;
   background-color: white;
   border-radius: 10px 0 0 10px;
   box-shadow: 0 0 5px 10px;
+  
 }
 .App_header{
   display: flex;
@@ -45,7 +51,17 @@
 }
 
 @media only screen and (min-width: 800px ) {
+  .App_info{
+    display: flex;
+  }
   .App_info_type{
     width: 500px;
+  }
+  .App_info_type{
+    position: fixed;
+  }
+  .App_data{
+    position: relative;
+    right: calc(100vw - 1000px);
   }
 }

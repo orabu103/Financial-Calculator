@@ -1,0 +1,17 @@
+.Table{
+    width: 100%;
+}
+thead {
+    height: 50px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+  }
+tr {
+    border-bottom: 1px solid lightgray;
+}
+  
+td {
+    padding: 1em;
+    text-align: center;
+}

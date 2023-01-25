@@ -37,7 +37,16 @@ export const translate = {
     measure:{
         title:['מדד']
     },
-    calculation:['חשב']
+    calculation:['חשב'],
+    table:{
+        OB:['יתרת פתיחה' ,'Opening Balance'],
+        CB:['יתרת סגירה' ,'Closing Balance'],
+        FP:['תשלום ריבית', 'Fund Payment' ],
+        IP:['תשלום קרן' , 'Interest Payment'],
+        T:['סך התשלום' , 'Total'],
+        I:['ריבית','Interest'],
+        M:['מדד','Measure']
+    }
 
 }
 

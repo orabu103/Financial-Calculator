@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from 'react';
 import {translate} from './translate/translate'
 import Section from './components/Section/Section';
-import {calculationEqualFund , calculationSpitzerFund} from './helper/index'
+import {calculationEqualFund , calculationSpitzerFund , calculationGrace} from './helper/index'
 import './App.css';
 import Table from './components/Table/Table';
 
@@ -15,9 +15,10 @@ const typeCalcList = [translate.typeCalc.list.one[0],
                       translate.typeCalc.list.three[0]]
 
 function App() {
+  const[arrayData , setArrayData] = useState([])
   const[data , setData] = useState({
-    foundation: null,
-    typeCalc: null,
+    foundation: 0,
+    typeCalc: 0,
     sum: 1000000,
     rangeYeaes: 5,
     rangeMonth: 60,
@@ -25,7 +26,7 @@ function App() {
     rangeGraceMonth: 0, 
     return: 0,
     interest: 5,
-    measure: 2
+    measure: 0
   })
 
   const handleOnClick = (title , newData) => {
@@ -49,12 +50,33 @@ function App() {
   }
 
   const handleOnCalculation = () => {
-    calculationSpitzerFund(data)
-  }
+    let tempData = {...data}
+    let result;
+    console.log(data.foundation)
+    switch(data.foundation){
+      case 0:
+        result = calculationSpitzerFund(data);
+        break;
+      case 1:
+        result = calculationEqualFund(data);
+        break;
+      case 2:
+        result = calculationGrace(data)
+        break;
+    }
+    setArrayData(result.result)
+    tempData.return = Math.ceil(result.monthPaymant)
+    setData(tempData)
   
-  // useEffect(() => {
-  //   console.log(data)
-  // },[data])
+  }
+
+  useEffect(() => {
+    let res = calculationGrace(data)
+    setArrayData(res)
+  },[])
+  useEffect(() => {
+    console.log(arrayData)
+  },[arrayData])
 
 
   return (
@@ -104,10 +126,12 @@ function App() {
               </div>
             </div>
           </div>
+          <div className='App_data'>
+            {arrayData.length &&
+            <Table data={arrayData}/>}
+          </div>
       </div>
-      <div className='App-data'>
-        <Table />
-      </div>
+      
     </div>
   );
 }
